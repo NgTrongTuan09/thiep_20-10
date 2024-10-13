@@ -1,0 +1,161 @@
+body {
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative; /* Thêm vị trí tương đối cho body */
+}
+
+h3{
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+.phong_bi {
+    position: relative;
+    width: 400px; /* Kích thước phong bì */
+    height: 250px; /* Kích thước phong bì */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng cho phong bì */
+}
+
+.nap_tam_giac {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 120px solid #8ce0e0; /* Màu cho nắp phong bì */
+    z-index: 2; /* Đặt z-index cho nắp thư */
+    transform: rotateX(180deg); /* Đặt tam giác ngược ban đầu */
+    transition: transform 0.5s ease; /* Hiệu ứng chuyển động */
+}
+
+.thiep_chu_nhat {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 2px solid #a8d0e6; /* Khung phong bì */
+    border-top: none; /* Bỏ khung trên để hiển thị tam giác */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng cho bức thư */
+}
+
+/* Đường kẻ chéo trên thiep_chu_nhat */
+.line {
+    position: absolute;
+    height: 2px; /* Độ dày của đường kẻ */
+    background-color: #a8d0e6; /* Màu của đường kẻ */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Đổ bóng cho đường kẻ */
+}
+
+.line1 {
+    width: 236px; /* Độ dài đường kẻ */
+    top: 60px; /* Vị trí đường kẻ trên (hạ thấp) */
+    right: -20px; /* Đặt ở bên phải */
+    transform: rotate(-30deg); /* Góc nghiêng */
+}
+
+.line2 {
+    width: 236px; /* Độ dài đường kẻ */
+    top: 60px; /* Vị trí đường kẻ trên (hạ thấp) */
+    left: -20px; /* Đặt ở bên trái */
+    transform: rotate(30deg); /* Góc nghiêng */
+}
+
+.dau_tron {
+    position: absolute;
+    top: 100px; /* Vị trí của hình trái tim */
+    left: 45%;
+    transform: translateX(-50%);
+    width: 50px; /* Kích thước hình trái tim */
+    height: 50px; /* Kích thước hình trái tim */
+    color: red;
+    
+    font-size: 40px;
+    transform: rotate(10deg);
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+    z-index: 3; /* Nằm trên các phần tử khác */
+}
+
+ 
+
+.thu {
+    position: absolute;
+    bottom: 20px; /* Đặt lá thư ở vị trí bên trong phong bì */
+    left: 50%; /* Giữa */
+    transform: translateX(-50%); /* Đặt vào giữa */
+    width: 300px; /* Kích thước bức thư */
+    height: 200px; /* Kích thước bức thư */
+    background-color: white;
+    border: 2px solid #a8d0e6; /* Khung bức thư */
+    display: none; /* Ẩn thư ban đầu */
+    z-index: 3; /* Nằm trên tấm thiệp */
+    text-align: center;
+    line-height: normal; /* Sửa lại để tránh tràn nội dung */
+    font-size: 20px;
+    color: #333;
+    opacity: 0; /* Đặt độ mờ */
+    transition: opacity 0.5s ease; /* Hiệu ứng mờ dần */
+    padding: 10px; /* Thêm khoảng cách bên trong để nội dung không tràn */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng */
+    overflow: hidden; /* Ẩn phần nội dung tràn ra ngoài */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.start_button {
+    position: absolute;
+    top: 50%; /* Đặt giữa màn hình */
+    left: 50%; /* Đặt giữa màn hình */
+    transform: translate(-50%, -50%); /* Đưa về giữa */
+    padding: 10px 20px; /* Khoảng cách bên trong nút */
+    font-size: 18px; /* Kích thước chữ */
+    background-color: #ff6699; /* Màu nền nút */
+    color: white; /* Màu chữ */
+    border: none; /* Bỏ viền */
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+    z-index: 4; /* Nằm trên các phần tử khác */
+}
+
+.xe_tai {
+    position: absolute;
+    width: 150px; /* Kích thước xe tải lớn hơn */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+    left: -150px; /* Bắt đầu ra ngoài màn hình */
+    bottom: 20%; /* Vị trí dưới phong bì */
+    transition: left 2s ease; /* Hiệu ứng di chuyển */
+}
+
+@keyframes openEnvelope {
+    0% {
+        transform: rotateX(170deg); /* Bắt đầu từ tam giác ngược */
+    }
+    100% {
+        transform: rotateX(0deg) translateY(-125px); /* Xoay và di chuyển phần đỉnh lên */
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        bottom: 20px; /* Vị trí bắt đầu bên trong phong bì */
+        opacity: 0; /* Bắt đầu trong trạng thái mờ */
+    }
+    100% {
+        bottom: 150px; /* Vị trí di chuyển lên ngoài phong bì */
+        opacity: 1; /* Hiện lên bức thư */
+    }
+}
+
+@keyframes showLetter {
+    0% {
+        transform: translateY(100%); /* Bắt đầu từ dưới phong bì */
+        opacity: 0; /* Bắt đầu với độ mờ */
+    }
+    100% {
+        transform: translateY(0); /* Di chuyển lên vị trí ban đầu */
+        opacity: 1; /* Hoàn toàn hiện rõ */
+    }
+}
